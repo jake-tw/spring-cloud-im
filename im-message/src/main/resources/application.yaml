@@ -1,0 +1,41 @@
+server:
+  port: 9001
+
+logging:
+  level:
+    com:
+      datastax:
+        driver:
+          core:
+            QueryLogger:
+              SLOW: TRACE
+              NORMAL: DEBUG
+
+spring:
+  cassandra:
+    request:
+      timeout: 10s
+    connection:
+      connect-timeout: 10s
+      init-query-timeout: 10s
+    local-datacenter: datacenter1
+    keyspace-name: im
+    #    contact-points: cassandra-test-1:9042,cassandra-test-2:9042
+    contact-points: localhost:9042
+  rabbitmq:
+    #    addresses: rabbitmq-test:5672
+    addresses: localhost:5672
+    username: guest
+    password: guest
+    virtual-host: /
+    connection-timeout: 16000
+  data:
+    redis:
+      repositories:
+        enabled: false
+      database: 0
+      #      host: redis-test
+      host: localhost
+      port: 6379
+      password:
+
